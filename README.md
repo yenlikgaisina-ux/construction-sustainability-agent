@@ -6,13 +6,13 @@
 [![LLM](https://img.shields.io/badge/LLM-Gemini%201.5%20Pro-purple)]()
 [![License](https://img.shields.io/badge/License-MIT-2D6A4F)]()
 
-> Automating UK construction sustainability research using a three-agent CrewAI pipeline -- from raw query to structured briefing in under 10 minutes.
+> Automating UK construction sustainability research using a three-agent CrewAI pipeline, from raw query to structured briefing in under 10 minutes.
 
 ---
 
 ## Business Question
 
-> "Can a multi-agent AI system autonomously research, analyse, and synthesise Scope 3 and embodied carbon intelligence for UK construction projects -- reducing research time from days to minutes?"
+> "Can a multi-agent AI system autonomously research, analyse, and synthesise Scope 3 and embodied carbon intelligence for UK construction projects, reducing research time from days to minutes?"
 
 UK construction sustainability managers and project directors spend significant time manually researching Scope 3 emissions data, embodied carbon benchmarks, and regulatory requirements from fragmented sources (UKGBC, RICS, HM Treasury, GHG Protocol). This project automates that research pipeline using a three-agent CrewAI system.
 
@@ -80,7 +80,7 @@ OUTPUT: Structured Markdown briefing (delivered in under 10 minutes)
 | Metric | Value |
 |--------|-------|
 | Agents in pipeline | 3 (Researcher, Analyst, Writer) |
-| Sources consulted per run | 8--12 live regulatory sources |
+| Sources consulted per run | 8 to 12 live regulatory sources |
 | End-to-end briefing time | Under 10 minutes |
 | Recommended actions per briefing | 3 concrete next steps |
 | Research topics tested | 5 construction sustainability topics |
@@ -94,10 +94,10 @@ The pipeline consistently produced structured, source-cited briefings on Scope 3
 
 The system has been run on the following construction sustainability topics:
 
-1. Scope 3 Category 1 -- Purchased Goods & Services for UK general contractors (2024 reporting cycle)
+1. Scope 3 Category 1: Purchased Goods & Services for UK general contractors (2024 reporting cycle)
 2. Embodied carbon benchmarks for concrete-frame commercial buildings (RICS/LETI targets)
 3. Whole-life carbon assessment requirements under UK Net Zero Carbon Buildings Standard
-4. BREEAM UK New Construction 2018 -- Materials and Waste credits pathway
+4. BREEAM UK New Construction 2018: Materials and Waste credits pathway
 5. Circular economy procurement strategies for demolition and fit-out waste
 
 ---
