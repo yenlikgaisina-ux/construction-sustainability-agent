@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://python.org)
 [![Status](https://img.shields.io/badge/Status-Complete-brightgreen)]()
 [![Framework](https://img.shields.io/badge/Framework-CrewAI-orange)]()
-[![LLM](https://img.shields.io/badge/LLM-Gemini%201.5%20Pro-purple)]()
+[![LLM](https://img.shields.io/badge/LLM-Gemini%202.0%20Flash-purple)]()
 [![License](https://img.shields.io/badge/License-MIT-2D6A4F)]()
 
 > Automating UK construction sustainability research using a three-agent CrewAI pipeline, from raw query to structured briefing in under 10 minutes.
@@ -14,43 +14,41 @@
 
 > "Can a multi-agent AI system autonomously research, analyse, and synthesise Scope 3 and embodied carbon intelligence for UK construction projects, reducing research time from days to minutes?"
 
-UK construction sustainability managers and project directors spend significant time manually researching Scope 3 emissions data, embodied carbon benchmarks, and regulatory requirements from fragmented sources (UKGBC, RICS, HM Treasury, GHG Protocol). This project automates that research pipeline using a three-agent CrewAI system.
+UK construction sustainability managers spend 2-3 days per month manually researching Scope 3 emissions data, embodied carbon benchmarks, and regulatory requirements from fragmented sources (UKGBC, RICS, HM Treasury, GHG Protocol). This project automates that research pipeline using a three-agent CrewAI system that searches live regulatory sources, validates findings, and produces a professional briefing.
 
 ---
 
 ## Agent Architecture
 
-Each agent has a defined role, goal, and set of tools. They run sequentially:
-
 ```
 INPUT: Research topic (e.g. "Scope 3 Category 1 for UK construction subcontractors 2024")
          |
          v
-+-------------------+  Tools: web_search, scrape_url
++-------------------+  Tools: SerperDev search, web scraper
 | RESEARCHER AGENT  |  Finds primary sources: UKGBC, RICS,
-|  Senior           |  HM Treasury, GHG Protocol
+|  Senior           |  GHG Protocol, BREEAM, gov.uk
 |  Sustainability   |
 |  Researcher       |
 +-------------------+
          |
-         | raw findings (URLs, excerpts, data tables)
+         | raw findings (URLs, excerpts, data)
          v
-+-------------------+  Tools: Python REPL
++-------------------+  No external tools
 |  ANALYST AGENT    |  Cross-checks figures, identifies
 |  Carbon Data      |  benchmarks, flags inconsistencies
 |  Analyst          |
 +-------------------+
          |
-         | structured analysis (key metrics, gaps)
+         | validated analysis (metrics, gaps)
          v
 +-------------------+  No external tools
 |  WRITER AGENT     |  Synthesises: Executive Summary,
-|  Technical Report |  Key Findings, Regulatory Context,
+|  Technical Report |  Regulatory Context, Key Findings,
 |  Writer           |  Recommended Actions
 +-------------------+
          |
          v
-OUTPUT: Structured Markdown briefing (delivered in under 10 minutes)
+OUTPUT: Professional Markdown briefing (800-1200 words)
 ```
 
 ---
@@ -69,30 +67,15 @@ OUTPUT: Structured Markdown briefing (delivered in under 10 minutes)
 
 | Task | Agent | Output |
 |------|-------|--------|
-| Search for recent regulatory guidance and industry data on the given topic | Researcher | List of verified sources with excerpts |
-| Analyse extracted data: identify benchmarks, trends, inconsistencies, quantitative targets | Analyst | Structured summary with flagged gaps |
-| Write professional briefing: Executive Summary, Regulatory Context, Key Findings, Recommended Actions | Writer | Final Markdown report |
-
----
-
-## Key Findings
-
-| Metric | Value |
-|--------|-------|
-| Agents in pipeline | 3 (Researcher, Analyst, Writer) |
-| Sources consulted per run | 8 to 12 live regulatory sources |
-| End-to-end briefing time | Under 10 minutes |
-| Recommended actions per briefing | 3 concrete next steps |
-| Research topics tested | 5 construction sustainability topics |
-| Manual research time saved | Estimated >95% vs traditional desk research |
-
-The pipeline consistently produced structured, source-cited briefings on Scope 3, embodied carbon, and BREEAM topics. The Analyst agent's cross-checking step materially improved output quality by flagging inconsistencies between sources before the Writer synthesised them.
+| Search for recent regulatory guidance and industry data on the given topic | Researcher | Structured findings package with source URLs, excerpts, and confidence ratings |
+| Analyse extracted data: validate figures, build metrics table, flag gaps | Analyst | Validated metrics table with compliance deadlines and data quality notes |
+| Write professional briefing: Executive Summary, Regulatory Context, Key Findings, Recommended Actions | Writer | Final Markdown briefing (800-1200 words) |
 
 ---
 
 ## Sample Research Topics
 
-The system has been run on the following construction sustainability topics:
+The system has been tested on the following UK construction sustainability topics:
 
 1. Scope 3 Category 1: Purchased Goods & Services for UK general contractors (2024 reporting cycle)
 2. Embodied carbon benchmarks for concrete-frame commercial buildings (RICS/LETI targets)
@@ -107,12 +90,22 @@ The system has been run on the following construction sustainability topics:
 | Component | Technology |
 |-----------|------------|
 | Agent Framework | CrewAI |
-| LLM Backbone | Gemini 1.5 Pro (Google AI API) |
-| Search Tool | SerperDev API |
+| LLM | Gemini 2.0 Flash (Google AI API) |
+| Web Search | SerperDev API |
 | Orchestration | LangChain |
-| Data Processing | Python, pandas |
 | Notebook | Google Colab |
 | Output Format | Markdown |
+
+---
+
+## Running the Notebook
+
+1. Open the notebook in [Google Colab](https://colab.research.google.com/github/yenlikgaisina-ux/construction-sustainability-agent/blob/main/notebook/construction_sustainability_agent.ipynb)
+2. Add your API keys in Colab Secrets (key icon in sidebar):
+   - `GOOGLE_API_KEY` -- from [Google AI Studio](https://aistudio.google.com/)
+   - `SERPER_API_KEY` -- from [serper.dev](https://serper.dev/) (free tier available)
+3. Run all cells. The crew executes sequentially and produces a briefing in the final cell.
+4. To change the research topic, edit the `RESEARCH_TOPIC` variable in Section 6.
 
 ---
 
